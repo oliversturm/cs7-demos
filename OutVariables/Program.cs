@@ -10,20 +10,22 @@ namespace OutVariables
     {
         static void Main(string[] args)
         {
-            // This doesn't work yet in preview 4, but should later, when the 
-            // variable is scoped to the local method
-            //ReturnValue(out int val);
-            //Console.WriteLine($"Value is {val}");
+            // Starting with VS 15 preview 5, the out variable is scoped to the 
+            // current method and can be used in following statements.
+            ReturnValue(out int aval);
+            Console.WriteLine($"Value is {aval}");
 
-            // This one works even now because the value is only used in the scope
-            // of the same if statement where it is created
+            // Note that even in this case, the variable is scoped to the method,
+            // not just to the inner block.
             if (int.TryParse("42", out int val))
             {
                 Console.WriteLine($"Parsed value {val}");
             }
+            Console.WriteLine($"Value is {val}");
 
             // Wildcards might become possible in the future - perhaps 
             // I don't care about one of the values. 
+            // This doesn't work yet as of VS 15 preview 5.
             //GetValues(out string important, out string *);
 
 
@@ -32,6 +34,12 @@ namespace OutVariables
         static void ReturnValue(out int x)
         {
             x = 42;
+        }
+
+        static void GetValues(out string one, out string two)
+        {
+            one = "one";
+            two = "two";
         }
     }
 }

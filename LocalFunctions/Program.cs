@@ -10,9 +10,9 @@ namespace LocalFunctions
     {
         static void Main(string[] args)
         {
-            // In the future, it should be possible to call the function before declaring it,
+            // From VS 15 preview 5, it is possible to call the function before declaring it,
             // as long as it is eventually declared in the local scope.
-            //GoDoIt();
+            GoDoIt();
 
             void GoDoIt()
             {

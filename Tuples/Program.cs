@@ -51,6 +51,10 @@ namespace Tuples
         {
             // note that I'm using the wrong names for the return values
             // this works in preview 4, I expect it shouldn't really work...
+            // Update: preview 5 still compiles this, but there's a 
+            // warning being shown explaining that the name given 
+            // here is ignored because the method signature declares 
+            // a different one.
             return (firstName: "Oliver", lastName: "Sturm");
         }
 

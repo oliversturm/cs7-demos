@@ -21,10 +21,9 @@ namespace PatternMatching
             if (!(val is Wand w))
                 return;
 
-            // It will be possible to do this in the future, but not yet
-            // in preview 4 - the scoping isn't right yet, similar to
-            // out variables.
-            //w.Simsalabim();
+            // The variable w is now scoped to the current method,
+            // so it can still be used here (starting VS 15 preview 5)
+            w.Simsalabim();
         }
 
         static void DoMagic_(object val) { 
