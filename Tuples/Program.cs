@@ -8,8 +8,7 @@ namespace Tuples
 {
     class Program
     {
-        // Make sure to add *prerelease* nuget package System.ValueTuple - not included by default
-        // in preview 4
+        // Make sure to add nuget package System.ValueTuple to your project.
 
         static void Main(string[] args)
         {
@@ -25,10 +24,9 @@ namespace Tuples
             
             // alternatively, 'var' can be outside the parens
             var (first_, last_) = GetName();
-            
-            // turns out a static type can *not* be outside the parens
-            // -- on purpose?
-            //string (first__, last__) = GetName();
+
+            // Using a static type outside the parens is not allowed. Not sure why not.
+            // string (first__, last__) = GetName();
 
             Console.WriteLine($"Name is {first} {last}");
 
@@ -38,8 +36,16 @@ namespace Tuples
 
             Console.WriteLine($"{name} is {age} years old");
 
-            // Wildcards may become an option in the future:
-            // (*, var age_) = person;
+            // VS 17 RC build 26127: DO NOT point the mouse at one of the wildcard
+            // _ characters, it crashes VS.
+
+            // Wildcards can be used to ignore parts during deconstruction:
+            (_, var age_) = person;
+
+            Console.WriteLine($"Age is {age_}");
+
+            (_, _, var three, _) = GetComplex();
+            Console.WriteLine($"Three is {three}");
         }
 
         static (string,string) GetName()
@@ -58,6 +64,9 @@ namespace Tuples
             return (firstName: "Oliver", lastName: "Sturm");
         }
 
+        static (string one, int two, string three, int four) GetComplex() {
+            return ("10", 20, "30", 40);
+        }
         public class Person
         {
             public string Name { get; set; }

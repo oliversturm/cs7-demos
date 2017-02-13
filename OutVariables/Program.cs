@@ -23,12 +23,12 @@ namespace OutVariables
             }
             Console.WriteLine($"Value is {val}");
 
-            // Wildcards might become possible in the future - perhaps 
-            // I don't care about one of the values. 
-            // This doesn't work yet as of VS 15 preview 5.
-            //GetValues(out string important, out string *);
+            // Wildcards are possible to ignore values. Earlier design documents
+            // hinted at a more complicated syntax like "out string *", but 
+            // this syntax works in VS 17 RC build 26127:
+            GetValues(out string important, out _);
 
-
+            Console.WriteLine($"Important is {important}");
         }
 
         static void ReturnValue(out int x)

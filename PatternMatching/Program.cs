@@ -38,6 +38,9 @@ namespace PatternMatching
                 case MagicBall b:
                     b.Look();
                     break;
+                case Potion ep when (ep.IsEmpty):
+                    // Not implemented - order new potion!
+                    break;
                 case Potion p:
                     p.Drink();
                     break;
@@ -59,6 +62,7 @@ namespace PatternMatching
 
         public class Potion
         {
+            public bool IsEmpty { get; }
             public void Drink() { }
         }
     }
